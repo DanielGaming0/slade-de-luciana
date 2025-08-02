@@ -33,23 +33,21 @@ html, body {
   max-width: 90%;
 }
 
-/* Imagens menores no slide */
 .slide-content img {
-  width: 300px; /* tamanho reduzido */
+  width: 320px; /* imagem menor */
   height: auto;
-  border-radius: 10px;
+  border-radius: 8px;
   object-fit: contain;
 }
 
-/* Texto ao lado */
 .text-content {
   color: white;
-  max-width: 400px;
+  max-width: 350px;
 }
 
 .text-content h2 {
   font-size: 2em;
-  margin-bottom: 0.5em;
+  margin-bottom: 0.4em;
 }
 
 .text-content p {
@@ -73,24 +71,22 @@ html, body {
   border-radius: 5px;
 }
 
-/* Responsividade para tablet */
 @media (max-width: 1024px) {
   .slide-content {
     flex-direction: column;
     text-align: center;
   }
   .slide-content img {
-    width: 250px;
+    width: 260px;
   }
 }
 
-/* Responsividade para celular */
 @media (max-width: 600px) {
   .slide-content img {
     width: 200px;
   }
   .text-content h2 {
-    font-size: 1.5em;
+    font-size: 1.6em;
   }
   .text-content p {
     font-size: 1em;
