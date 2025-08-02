@@ -1,7 +1,8 @@
 body {
   margin: 0;
   font-family: sans-serif;
-  background-color: #007BFF; /* Fundo azul */
+  background: url('assets/fundo.jpg') no-repeat center center fixed;
+  background-size: cover;
   overflow: hidden;
 }
 
@@ -19,13 +20,15 @@ body {
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  transition: opacity 0.5s ease;
+  padding: 20px;
+  box-sizing: border-box;
 }
 
 .slide img {
-  width: 40%;
+  width: 100%;
+  max-width: 640px;
   height: auto;
-  object-fit: cover;
+  object-fit: contain;
   border-radius: 10px;
   margin-right: 40px;
 }
@@ -36,7 +39,7 @@ body {
 }
 
 .text-content h2 {
-  font-size: 3em;
+  font-size: 2.5em;
   margin-bottom: 0.5em;
 }
 
@@ -52,7 +55,35 @@ body {
   font-size: 1.5em;
   margin: 0 10px;
   cursor: pointer;
-  background-color: white;
+  background-color: rgba(255,255,255,0.8);
   border: none;
   border-radius: 5px;
+}
+
+/* Responsividade */
+@media (max-width: 1024px) {
+  .slide {
+    flex-direction: column;
+    text-align: center;
+  }
+  .slide img {
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
+  .text-content {
+    max-width: 90%;
+  }
+  .text-content h2 {
+    font-size: 2em;
+  }
+}
+
+@media (max-width: 600px) {
+  .text-content h2 {
+    font-size: 1.5em;
+  }
+  .navigation button {
+    padding: 8px 15px;
+    font-size: 1.2em;
+  }
 }
