@@ -71,21 +71,33 @@ html, body {
   border-radius: 5px;
 }
 
-/* Ajuste especial para a primeira seção */
+/* Ajuste especial para o primeiro slide no PC */
 .slide:first-child .slide-content {
-  flex-direction: row; /* Imagem à esquerda, texto à direita */
+  flex-direction: row; /* Imagem à esquerda */
+  justify-content: flex-start; /* Coloca mais para o canto */
+  gap: 20px; /* Menor distância entre imagem e texto */
+  padding-left: 60px; /* Empurra mais para a esquerda */
   text-align: left;
 }
 
 .slide:first-child .slide-content img {
-  width: 380px; /* Imagem maior */
+  width: 400px; /* Imagem maior */
 }
 
 .slide:first-child .text-content {
-  max-width: 400px;
+  max-width: 300px; /* Texto mais compacto */
 }
 
-/* Responsividade para todos */
+.slide:first-child .text-content h2 {
+  font-size: 2.5em; /* Texto principal maior */
+}
+
+.slide:first-child .text-content p {
+  font-size: 1em; /* Subtítulo menor */
+  opacity: 0.9;
+}
+
+/* Responsividade */
 @media (max-width: 1024px) {
   .slide-content {
     flex-direction: column;
@@ -96,9 +108,10 @@ html, body {
     width: 260px;
   }
 
-  /* Ajuste para a primeira seção no mobile */
+  /* Ajuste para o primeiro slide no mobile */
   .slide:first-child .slide-content {
     flex-direction: column;
+    padding-left: 0;
     text-align: center;
   }
   .slide:first-child .slide-content img {
