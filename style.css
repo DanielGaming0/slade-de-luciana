@@ -71,12 +71,12 @@ html, body {
   border-radius: 5px;
 }
 
-/* Ajuste especial para o primeiro slide no PC */
+/* Ajuste especial para o primeiro slide em todas as telas */
 .slide:first-child .slide-content {
-  flex-direction: row; /* Imagem à esquerda */
-  justify-content: flex-start; /* Coloca mais para o canto */
+  flex-direction: row; /* Sempre lado a lado */
+  justify-content: flex-start; /* Imagem mais à esquerda */
   gap: 20px; /* Menor distância entre imagem e texto */
-  padding-left: 60px; /* Empurra mais para a esquerda */
+  padding-left: 60px; /* Empurra mais para o canto */
   text-align: left;
 }
 
@@ -89,7 +89,7 @@ html, body {
 }
 
 .slide:first-child .text-content h2 {
-  font-size: 2.5em; /* Texto principal maior */
+  font-size: 2.5em; /* Título maior */
 }
 
 .slide:first-child .text-content p {
@@ -97,25 +97,22 @@ html, body {
   opacity: 0.9;
 }
 
-/* Responsividade */
+/* Mantém no mesmo estilo no celular */
 @media (max-width: 1024px) {
   .slide-content {
     flex-direction: column;
     text-align: center;
   }
 
-  .slide-content img {
-    width: 260px;
-  }
-
-  /* Ajuste para o primeiro slide no mobile */
+  /* Primeiro slide mantém lado a lado no celular */
   .slide:first-child .slide-content {
-    flex-direction: column;
-    padding-left: 0;
-    text-align: center;
+    flex-direction: row;
+    text-align: left;
+    padding-left: 20px;
+    gap: 15px;
   }
   .slide:first-child .slide-content img {
-    width: 280px;
+    width: 300px;
   }
 }
 
@@ -128,5 +125,22 @@ html, body {
   }
   .text-content p {
     font-size: 1em;
+  }
+
+  /* Primeiro slide no celular ainda lado a lado */
+  .slide:first-child .slide-content {
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    padding-left: 10px;
+  }
+  .slide:first-child .slide-content img {
+    width: 180px;
+  }
+  .slide:first-child .text-content h2 {
+    font-size: 1.4em;
+  }
+  .slide:first-child .text-content p {
+    font-size: 0.9em;
   }
 }
