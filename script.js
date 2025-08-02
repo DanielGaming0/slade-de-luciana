@@ -7,7 +7,6 @@ document.getElementById('next').addEventListener('click', () => {
   currentSlide = (currentSlide + 1) % totalSlides;
   updateSlider();
 });
-
 document.getElementById('prev').addEventListener('click', () => {
   currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
   updateSlider();
