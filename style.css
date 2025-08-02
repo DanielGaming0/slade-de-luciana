@@ -27,14 +27,16 @@ html, body {
 
 .slide-content {
   display: flex;
+  flex-direction: row; /* Sempre lado a lado */
   align-items: center;
   justify-content: center;
   gap: 40px;
   max-width: 90%;
+  text-align: left;
 }
 
 .slide-content img {
-  width: 320px;
+  width: 380px; /* Imagem maior no PC e tablet */
   height: auto;
   border-radius: 8px;
   object-fit: contain;
@@ -71,76 +73,54 @@ html, body {
   border-radius: 5px;
 }
 
-/* Ajuste especial para o primeiro slide em todas as telas */
+/* Primeiro slide com ajustes extras */
 .slide:first-child .slide-content {
-  flex-direction: row; /* Sempre lado a lado */
-  justify-content: flex-start; /* Imagem mais à esquerda */
-  gap: 20px; /* Menor distância entre imagem e texto */
-  padding-left: 60px; /* Empurra mais para o canto */
-  text-align: left;
+  justify-content: flex-start; /* Imagem mais para o canto */
+  gap: 20px;
+  padding-left: 60px;
 }
 
 .slide:first-child .slide-content img {
-  width: 400px; /* Imagem maior */
+  width: 400px;
 }
 
 .slide:first-child .text-content {
-  max-width: 300px; /* Texto mais compacto */
+  max-width: 300px;
 }
 
 .slide:first-child .text-content h2 {
-  font-size: 2.5em; /* Título maior */
+  font-size: 2.5em;
 }
 
 .slide:first-child .text-content p {
-  font-size: 1em; /* Subtítulo menor */
+  font-size: 1em;
   opacity: 0.9;
 }
 
-/* Mantém no mesmo estilo no celular */
+/* Mobile e tablet: mantém lado a lado */
 @media (max-width: 1024px) {
   .slide-content {
-    flex-direction: column;
-    text-align: center;
+    gap: 20px;
   }
-
-  /* Primeiro slide mantém lado a lado no celular */
-  .slide:first-child .slide-content {
-    flex-direction: row;
-    text-align: left;
-    padding-left: 20px;
-    gap: 15px;
-  }
-  .slide:first-child .slide-content img {
+  .slide-content img {
     width: 300px;
+  }
+  .text-content {
+    max-width: 250px;
   }
 }
 
 @media (max-width: 600px) {
-  .slide-content img {
-    width: 200px;
-  }
-  .text-content h2 {
-    font-size: 1.6em;
-  }
-  .text-content p {
-    font-size: 1em;
-  }
-
-  /* Primeiro slide no celular ainda lado a lado */
-  .slide:first-child .slide-content {
-    flex-direction: row;
-    align-items: center;
+  .slide-content {
     gap: 10px;
-    padding-left: 10px;
   }
-  .slide:first-child .slide-content img {
+  .slide-content img {
     width: 180px;
   }
-  .slide:first-child .text-content h2 {
+  .text-content h2 {
     font-size: 1.4em;
   }
-  .slide:first-child .text-content p {
+  .text-content p {
     font-size: 0.9em;
   }
 }
