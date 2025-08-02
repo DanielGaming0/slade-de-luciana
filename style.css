@@ -36,7 +36,7 @@ html, body {
 }
 
 .slide-content img {
-  width: 380px; /* Imagem maior no PC e tablet */
+  width: 380px; /* Imagem padrão */
   height: auto;
   border-radius: 8px;
   object-fit: contain;
@@ -75,29 +75,36 @@ html, body {
 
 /* Primeiro slide com ajustes extras */
 .slide:first-child .slide-content {
-  justify-content: flex-start; /* Imagem mais para o canto */
-  gap: 20px;
-  padding-left: 60px;
+  justify-content: space-between; /* Imagem na esquerda, texto na direita */
+  align-items: center;
+  gap: 40px;
+  padding-left: 0;
+  padding-right: 60px;
+  width: 100%;
 }
 
 .slide:first-child .slide-content img {
-  width: 400px;
+  width: 500px; /* Aumenta mais a imagem */
+  height: auto;
+  border-radius: 8px;
+  object-fit: contain;
 }
 
 .slide:first-child .text-content {
-  max-width: 300px;
+  max-width: 400px;
+  text-align: left;
 }
 
 .slide:first-child .text-content h2 {
-  font-size: 2.5em;
+  font-size: 3em; /* Texto maior */
 }
 
 .slide:first-child .text-content p {
-  font-size: 1em;
+  font-size: 1.2em;
   opacity: 0.9;
 }
 
-/* Mobile e tablet: mantém lado a lado */
+/* Mobile e tablet */
 @media (max-width: 1024px) {
   .slide-content {
     gap: 20px;
@@ -107,6 +114,11 @@ html, body {
   }
   .text-content {
     max-width: 250px;
+  }
+
+  /* Primeiro slide no tablet */
+  .slide:first-child .slide-content img {
+    width: 350px;
   }
 }
 
@@ -122,5 +134,22 @@ html, body {
   }
   .text-content p {
     font-size: 0.9em;
+  }
+
+  /* Primeiro slide no celular */
+  .slide:first-child .slide-content {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+  }
+
+  .slide:first-child .slide-content img {
+    width: 220px;
+  }
+
+  .slide:first-child .text-content {
+    text-align: center;
+    max-width: 90%;
   }
 }
