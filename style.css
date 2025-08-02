@@ -1,4 +1,3 @@
-
 html, body {
   margin: 0;
   padding: 0;
@@ -35,7 +34,7 @@ html, body {
 }
 
 .slide-content img {
-  width: 320px; /* imagem menor */
+  width: 320px;
   height: auto;
   border-radius: 8px;
   object-fit: contain;
@@ -72,13 +71,38 @@ html, body {
   border-radius: 5px;
 }
 
+/* Ajuste especial para a primeira seção */
+.slide:first-child .slide-content {
+  flex-direction: row; /* Imagem à esquerda, texto à direita */
+  text-align: left;
+}
+
+.slide:first-child .slide-content img {
+  width: 380px; /* Imagem maior */
+}
+
+.slide:first-child .text-content {
+  max-width: 400px;
+}
+
+/* Responsividade para todos */
 @media (max-width: 1024px) {
   .slide-content {
     flex-direction: column;
     text-align: center;
   }
+
   .slide-content img {
     width: 260px;
+  }
+
+  /* Ajuste para a primeira seção no mobile */
+  .slide:first-child .slide-content {
+    flex-direction: column;
+    text-align: center;
+  }
+  .slide:first-child .slide-content img {
+    width: 280px;
   }
 }
 
