@@ -1,11 +1,16 @@
-body {
+/* Remove barra de rolagem e evita "zoom arrastável" */
+html, body {
   margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
   font-family: sans-serif;
   background: url('assets/fundo.jpg') no-repeat center center fixed;
   background-size: cover;
-  overflow: hidden;
 }
 
+/* Área principal do slider */
 .slider {
   display: flex;
   width: 300%;
@@ -13,29 +18,38 @@ body {
   transition: transform 0.8s ease-in-out;
 }
 
+/* Cada slide */
 .slide {
   width: 100vw;
   height: 100vh;
+  flex-shrink: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-shrink: 0;
-  padding: 20px;
-  box-sizing: border-box;
 }
 
-.slide img {
-  width: 100%;
-  max-width: 640px;
+/* Conteúdo do slide (imagem + texto) */
+.slide-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  max-width: 90%;
+}
+
+/* Imagens */
+.slide-content img {
+  width: 640px;
+  max-width: 100%;
   height: auto;
-  object-fit: contain;
   border-radius: 10px;
-  margin-right: 40px;
+  object-fit: contain;
 }
 
+/* Texto */
 .text-content {
   color: white;
-  max-width: 40%;
+  max-width: 400px;
 }
 
 .text-content h2 {
@@ -43,6 +57,11 @@ body {
   margin-bottom: 0.5em;
 }
 
+.text-content p {
+  font-size: 1.2em;
+}
+
+/* Botões de navegação */
 .navigation {
   position: absolute;
   bottom: 20px;
@@ -60,30 +79,20 @@ body {
   border-radius: 5px;
 }
 
-/* Responsividade */
+/* Responsivo para tablets */
 @media (max-width: 1024px) {
-  .slide {
+  .slide-content {
     flex-direction: column;
     text-align: center;
   }
-  .slide img {
-    margin-right: 0;
-    margin-bottom: 20px;
-  }
-  .text-content {
-    max-width: 90%;
-  }
-  .text-content h2 {
-    font-size: 2em;
-  }
 }
 
+/* Responsivo para celulares */
 @media (max-width: 600px) {
   .text-content h2 {
-    font-size: 1.5em;
+    font-size: 1.8em;
   }
-  .navigation button {
-    padding: 8px 15px;
-    font-size: 1.2em;
+  .text-content p {
+    font-size: 1em;
   }
 }
