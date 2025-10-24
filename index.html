@@ -12,11 +12,12 @@
   <!-- CSS EMBUTIDO -->
   <style>
     :root {
-      --primary-dark: #8B0000; /* Vermelho escuro - tema histórico */
-      --primary-light: #B22222; /* Vermelho médio */
-      --primary-bright: #DC143C;
-      --accent: #DAA520; /* Dourado/Ocre */
-      --accent-light: #F0E68C;
+      --primary-dark: #5D4037; /* Marrom escuro - tema histórico */
+      --primary-light: #8D6E63; /* Marrom médio */
+      --primary-bright: #A1887F;
+      --accent: #D7CCC8; /* Bege claro */
+      --accent-light: #FFD54F; /* Amarelo dourado */
+      --accent-dark: #795548;
       --bg-light: #f8f9fa;
       --bg-white: #ffffff;
       --text-dark: #212529;
@@ -62,7 +63,7 @@
     }
     @keyframes blink {
       0%, 100% { border-color: transparent; }
-      50% { border-color: var(--accent); }
+      50% { border-color: var(--accent-light); }
     }
     @keyframes animated-gradient {
       0% { background-position: 0% 50%; }
@@ -72,6 +73,29 @@
     @keyframes rotate {
       from { transform: rotate(0deg); }
       to { transform: rotate(360deg); }
+    }
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+      20%, 40%, 60%, 80% { transform: translateX(5px); }
+    }
+    @keyframes glow {
+      0%, 100% { box-shadow: 0 0 5px var(--accent-light); }
+      50% { box-shadow: 0 0 20px var(--accent-light); }
+    }
+    @keyframes slideInFromTop {
+      from { opacity: 0; transform: translateY(-50px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes zoomIn {
+      from { opacity: 0; transform: scale(0.8); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    @keyframes bounceIn {
+      0% { opacity: 0; transform: scale(0.3); }
+      50% { opacity: 1; transform: scale(1.05); }
+      70% { transform: scale(0.9); }
+      100% { opacity: 1; transform: scale(1); }
     }
 
     * {
@@ -143,7 +167,7 @@
       align-items: center;
       justify-content: center;
       text-align: center;
-      background: linear-gradient(135deg, var(--primary-dark), var(--primary-light), #8B0000);
+      background: linear-gradient(135deg, #3E2723, #5D4037, #8D6E63);
       background-size: 400% 400%;
       animation: animated-gradient 15s ease infinite;
       color: var(--bg-white);
@@ -180,6 +204,11 @@
       height: auto;
       object-fit: contain;
       filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+      transition: transform 0.5s ease;
+    }
+    
+    .logo-image:hover {
+      transform: scale(1.1) rotate(5deg);
     }
     
     .title-wrap {
@@ -196,19 +225,26 @@
       text-shadow: 2px 2px 5px rgba(0,0,0,0.3);
       letter-spacing: 1px;
       color: var(--bg-white);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .slide--title h1::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 3px;
+      background: var(--accent-light);
+      border-radius: 2px;
     }
     
     .authors-block {
       font-family: 'Inter', sans-serif;
       color: rgba(255,255,255,0.95);
       margin-bottom: 30px;
-    }
-    
-    .authors-title {
-      font-size: 1.1rem;
-      font-weight: 600;
-      margin-bottom: 12px;
-      color: var(--accent);
     }
     
     .authors-names {
@@ -229,13 +265,18 @@
     .title-year {
         font-size: 1.3rem;
         font-weight: 600;
-        color: var(--accent);
+        color: var(--accent-light);
         letter-spacing: 1px;
+        padding: 8px 20px;
+        border: 2px solid var(--accent-light);
+        border-radius: 30px;
+        display: inline-block;
+        animation: glow 2s infinite;
     }
 
     /* === SLIDES DE CONTEÚDO === */
     .slide:not(.slide--title) {
-      background: linear-gradient(135deg, #3a0000, #5a0000, #8B0000, #B22222);
+      background: linear-gradient(135deg, #3E2723, #4E342E, #5D4037, #6D4C41);
       background-size: 400% 400%;
       animation: animated-gradient 20s ease infinite;
       color: var(--bg-white);
@@ -277,7 +318,7 @@
       display: block;
       width: 60px;
       height: 4px;
-      background: var(--accent);
+      background: var(--accent-light);
       margin-top: 12px;
       border-radius: 2px;
       position: absolute;
@@ -294,7 +335,7 @@
 
     .slide:not(.slide--title) blockquote {
       background: rgba(255, 255, 255, 0.1);
-      border-left: 4px solid var(--accent);
+      border-left: 4px solid var(--accent-light);
       color: rgba(255, 255, 255, 0.9);
       font-size: 1.05rem;
       padding: 20px 25px;
@@ -302,6 +343,12 @@
       margin: 20px 0;
       backdrop-filter: blur(10px);
       box-shadow: var(--shadow-sm);
+      transition: all 0.3s ease;
+    }
+
+    .slide:not(.slide--title) blockquote:hover {
+      transform: translateX(5px);
+      box-shadow: var(--shadow-md);
     }
 
     .slide:not(.slide--title) blockquote cite {
@@ -327,17 +374,24 @@
       box-shadow: var(--shadow-sm);
       transition: all 0.3s ease;
       backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
     }
 
     .info-card:hover {
       transform: translateY(-5px);
       box-shadow: var(--shadow-md);
+      background: rgba(255, 255, 255, 0.15);
     }
 
     .card-icon {
       font-size: 32px;
-      color: var(--accent);
+      color: var(--accent-light);
       margin-bottom: 16px;
+      transition: transform 0.5s ease;
+    }
+
+    .info-card:hover .card-icon {
+      transform: scale(1.2) rotate(10deg);
     }
 
     .info-card h3 {
@@ -366,7 +420,7 @@
       top: 0;
       bottom: 0;
       width: 3px;
-      background: var(--accent);
+      background: var(--accent-light);
       border-radius: 3px;
     }
 
@@ -383,7 +437,13 @@
       height: 12px;
       border-radius: 50%;
       background: var(--primary-light);
-      border: 3px solid var(--accent);
+      border: 3px solid var(--accent-light);
+      transition: all 0.3s ease;
+    }
+
+    .timeline-item:hover .timeline-marker {
+      transform: scale(1.3);
+      background: var(--accent-light);
     }
 
     .timeline-content {
@@ -392,6 +452,13 @@
       border-radius: var(--radius-md);
       box-shadow: var(--shadow-sm);
       backdrop-filter: blur(10px);
+      transition: all 0.3s ease;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .timeline-item:hover .timeline-content {
+      transform: translateX(5px);
+      box-shadow: var(--shadow-md);
     }
 
     .timeline-content h3 {
@@ -420,13 +487,15 @@
       border-radius: var(--radius-lg);
       box-shadow: var(--shadow-lg);
       object-fit: cover;
-      border: 3px solid var(--accent);
+      border: 3px solid var(--accent-light);
       transition: all 0.5s ease;
+      filter: sepia(0.3) brightness(0.9);
     }
 
     .slide-image:hover {
       transform: scale(1.02);
       box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+      filter: sepia(0) brightness(1);
     }
 
     /* Lista com ícones */
@@ -441,13 +510,26 @@
       align-items: flex-start;
       margin-bottom: 15px;
       color: rgba(255, 255, 255, 0.9);
+      transition: all 0.3s ease;
+      padding: 10px;
+      border-radius: var(--radius-md);
+    }
+
+    .icon-list li:hover {
+      background: rgba(255, 255, 255, 0.1);
+      transform: translateX(5px);
     }
 
     .icon-list i {
-      color: var(--accent);
+      color: var(--accent-light);
       margin-right: 15px;
       margin-top: 3px;
       font-size: 18px;
+      transition: transform 0.3s ease;
+    }
+
+    .icon-list li:hover i {
+      transform: scale(1.2);
     }
 
     /* Objetos Flutuantes */
@@ -498,7 +580,7 @@
         justify-content: center;
         align-items: center;
         height: 100%;
-        color: var(--accent);
+        color: var(--accent-light);
         font-family: 'Playfair Display', serif;
         font-size: 5rem;
         font-weight: 500;
@@ -506,6 +588,20 @@
         animation-name: fadeIn;
         animation-duration: 1.2s;
         animation-delay: 0.5s;
+        position: relative;
+    }
+    
+    .thank-you-side::after {
+      content: '';
+      position: absolute;
+      top: -10px;
+      left: -10px;
+      right: -10px;
+      bottom: -10px;
+      background: linear-gradient(45deg, transparent, rgba(255, 213, 79, 0.1), transparent);
+      border-radius: 10px;
+      z-index: -1;
+      animation: pulse 3s infinite;
     }
 
     /* Controles */
@@ -533,10 +629,15 @@
       justify-content: center; 
       box-shadow: var(--shadow-md); 
       transition: all 0.3s ease; 
+      border: 2px solid rgba(255, 255, 255, 0.2);
     }
     .controls button:hover { 
       background: var(--primary-light); 
       transform: scale(1.1); 
+      border-color: var(--accent-light);
+    }
+    .controls button:active {
+      transform: scale(0.95);
     }
     .controls button i { 
       font-size: 20px; 
@@ -555,8 +656,12 @@
       border: none; 
     }
     .dot.active { 
-      background: var(--accent); 
+      background: var(--accent-light); 
       transform: scale(1.3); 
+      box-shadow: 0 0 10px var(--accent-light);
+    }
+    .dot:hover {
+      transform: scale(1.2);
     }
 
     /* Progress bar */
@@ -572,18 +677,67 @@
 
     .progress-bar {
       height: 100%;
-      background: var(--accent);
+      background: var(--accent-light);
       width: 0%;
       transition: width 0.3s ease;
+      box-shadow: 0 0 10px var(--accent-light);
     }
 
     /* Efeito de máquina de escrever */
     .typewriter {
       overflow: hidden;
-      border-right: 3px solid var(--accent);
+      border-right: 3px solid var(--accent-light);
       white-space: nowrap;
       margin: 0 auto;
       animation: typewriter 3.5s steps(40, end), blink 1s step-end infinite;
+    }
+    
+    /* Indicador de teclas */
+    .key-hint {
+      position: absolute;
+      bottom: 90px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 0.9rem;
+      display: flex;
+      gap: 20px;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+    
+    .key-hint.show {
+      opacity: 1;
+    }
+    
+    .key {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 30px;
+      height: 30px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 5px;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      margin-right: 5px;
+    }
+
+    /* Efeito de partículas */
+    .particles {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      pointer-events: none;
+    }
+    
+    .particle {
+      position: absolute;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      animation: float 15s linear infinite;
     }
 
     /* Responsividade */
@@ -636,6 +790,9 @@
       .image-side {
         max-width: 100%;
       }
+      .key-hint {
+        display: none;
+      }
     }
 
     @media (max-width: 480px) {
@@ -677,7 +834,6 @@
           <div class="title-wrap">
             <h1 class="animated delay-1">A REVOLTA DA VACINA</h1>
             <div class="authors-block animated delay-2">
-              <div class="authors-title">Componentes:</div>
               <div class="authors-names">
                 INGRID MARTINS, ISMAEL MONTELO, FRANCISCA DO ROSÁRIO,<br>
                 LUCIANA MENDES, NATIANE CARDOSO, RENÊ ANTÔNIO
@@ -694,6 +850,7 @@
         <div class="background-animation">
           <ul><li></li><li></li><li></li><li></li><li></li><li></li><li></li></ul>
         </div>
+        <div class="particles" id="particles1"></div>
         <div class="content-wrap">
           <div class="text">
             <h2 class="animated"><i class="fas fa-syringe"></i> INTRODUÇÃO</h2>
@@ -712,6 +869,7 @@
         <div class="background-animation">
           <ul><li></li><li></li><li></li><li></li><li></li><li></li><li></li></ul>
         </div>
+        <div class="particles" id="particles2"></div>
         <div class="content-wrap">
           <div class="text">
             <h2 class="animated"><i class="fas fa-search"></i> CAUSAS E CONSEQUÊNCIAS</h2>
@@ -737,7 +895,7 @@
               </div>
             </div>
             
-            <h3 class="animated delay-3" style="margin-top: 30px; color: var(--accent);">Consequências da Revolta da Vacina</h3>
+            <h3 class="animated delay-3" style="margin-top: 30px; color: var(--accent-light);">Consequências da Revolta da Vacina</h3>
             <p class="animated delay-3">O presidente Rodrigues Alves mobilizou o Exército para conter a situação, e só depois do decreto do estado de sítio, no dia 16, a situação ficou sob controle.</p>
             
             <div class="timeline">
@@ -758,6 +916,7 @@
         <div class="background-animation">
           <ul><li></li><li></li><li></li><li></li><li></li><li></li><li></li></ul>
         </div>
+        <div class="particles" id="particles3"></div>
         <div class="content-wrap">
           <div class="text">
             <h2 class="animated"><i class="fas fa-hand-sparkles"></i> HIGIENISMO</h2>
@@ -798,6 +957,7 @@
         <div class="background-animation">
           <ul><li></li><li></li><li></li><li></li><li></li><li></li><li></li></ul>
         </div>
+        <div class="particles" id="particles4"></div>
         <div class="content-wrap">
           <div class="text">
             <h2 class="animated"><i class="fas fa-shield-virus"></i> MEDIDAS DE COMBATE</h2>
@@ -854,6 +1014,7 @@
         <div class="background-animation">
           <ul><li></li><li></li><li></li><li></li><li></li><li></li><li></li></ul>
         </div>
+        <div class="particles" id="particles5"></div>
         <div class="final-slide-layout">
             <div class="content-wrap">
                 <div class="text">
@@ -861,7 +1022,7 @@
                     <p class="animated delay-1">A população do Rio de Janeiro se rebelou contra a vacinação porque a campanha realizada pelo governo federal foi conduzida de maneira autoritária, uma vez que a vacinação era obrigatória.</p>
                     <p class="animated delay-2">Além disso, a população desconhecia os benefícios da vacinação e o governo brasileiro não promoveu nenhuma campanha para orientar a população sobre a importância de se vacinar.</p>
                     
-                    <h3 class="animated delay-3" style="margin-top: 30px; color: var(--accent);">Líderes da Revolta da Vacina</h3>
+                    <h3 class="animated delay-3" style="margin-top: 30px; color: var(--accent-light);">Líderes da Revolta da Vacina</h3>
                     <div class="info-cards">
                       <div class="info-card animated delay-3">
                         <div class="card-icon"><i class="fas fa-user"></i></div>
@@ -896,6 +1057,13 @@
       <div class="progress-bar" id="progressBar"></div>
     </div>
 
+    <!-- Indicador de teclas -->
+    <div class="key-hint" id="keyHint">
+      <span><span class="key">←</span> Anterior</span>
+      <span><span class="key">→</span> Próximo</span>
+      <span><span class="key">Espaço</span> Pausar/Continuar</span>
+    </div>
+
     <!-- CONTROLES -->
     <div class="controls" role="toolbar" aria-label="Controles do carrossel">
       <button id="prevBtn" aria-label="Anterior">
@@ -916,11 +1084,45 @@
       const nextBtn = document.getElementById('nextBtn');
       const dotsWrap = document.getElementById('dots');
       const progressBar = document.getElementById('progressBar');
+      const keyHint = document.getElementById('keyHint');
       const TRANS_MS = 700;
 
       let current = 0;
       let isAnimating = false;
       let autoPlayInterval;
+      let isPaused = false;
+
+      // Criar partículas
+      function createParticles() {
+        const particlesContainers = document.querySelectorAll('.particles');
+        
+        particlesContainers.forEach(container => {
+          const particleCount = 20;
+          
+          for (let i = 0; i < particleCount; i++) {
+            const particle = document.createElement('div');
+            particle.classList.add('particle');
+            
+            // Tamanho aleatório
+            const size = Math.random() * 10 + 5;
+            particle.style.width = `${size}px`;
+            particle.style.height = `${size}px`;
+            
+            // Posição inicial aleatória
+            particle.style.left = `${Math.random() * 100}%`;
+            particle.style.top = `${Math.random() * 100}%`;
+            
+            // Atraso e duração da animação
+            particle.style.animationDelay = `${Math.random() * 20}s`;
+            particle.style.animationDuration = `${15 + Math.random() * 20}s`;
+            
+            // Opacidade aleatória
+            particle.style.opacity = Math.random() * 0.3 + 0.1;
+            
+            container.appendChild(particle);
+          }
+        });
+      }
 
       function buildDots() {
         slides.forEach((s, i) => {
@@ -991,71 +1193,52 @@
         }, TRANS_MS);
       }
       
-      function startAutoPlay() {
-        autoPlayInterval = setInterval(() => {
-          goTo(current + 1, 'next');
-        }, 8000); // Avança a cada 8 segundos
-      }
-      
-      function stopAutoPlay() {
-        clearInterval(autoPlayInterval);
+      // Mostrar dica de teclas temporariamente
+      function showKeyHint() {
+        keyHint.classList.add('show');
+        setTimeout(() => {
+          keyHint.classList.remove('show');
+        }, 3000);
       }
       
       buildDots();
       initializeSlides();
       updateProgress(current);
-      startAutoPlay();
+      createParticles();
+      showKeyHint();
 
       prevBtn.addEventListener('click', () => {
-        stopAutoPlay();
         goTo(current - 1, 'prev');
-        setTimeout(startAutoPlay, 10000); // Reinicia após 10 segundos
       });
       
       nextBtn.addEventListener('click', () => {
-        stopAutoPlay();
         goTo(current + 1, 'next');
-        setTimeout(startAutoPlay, 10000); // Reinicia após 10 segundos
       });
       
       dotsWrap.addEventListener('click', (e) => {
         if (e.target.matches('.dot')) {
-          stopAutoPlay();
           goTo(Number(e.target.dataset.index));
-          setTimeout(startAutoPlay, 10000); // Reinicia após 10 segundos
         }
       });
       
       document.addEventListener('keydown', (e) => {
         if (e.key === 'ArrowRight') {
-          stopAutoPlay();
           goTo(current + 1, 'next');
-          setTimeout(startAutoPlay, 10000);
+          showKeyHint();
         }
         if (e.key === 'ArrowLeft') {
-          stopAutoPlay();
           goTo(current - 1, 'prev');
-          setTimeout(startAutoPlay, 10000);
+          showKeyHint();
         }
         if (e.key === 'Home') { 
           e.preventDefault(); 
-          stopAutoPlay();
           goTo(0); 
-          setTimeout(startAutoPlay, 10000);
+          showKeyHint();
         }
         if (e.key === 'End') { 
           e.preventDefault(); 
-          stopAutoPlay();
           goTo(slides.length - 1); 
-          setTimeout(startAutoPlay, 10000);
-        }
-        if (e.key === ' ') {
-          e.preventDefault();
-          if (autoPlayInterval) {
-            stopAutoPlay();
-          } else {
-            startAutoPlay();
-          }
+          showKeyHint();
         }
       });
 
@@ -1077,11 +1260,33 @@
         const touchEndX = e.changedTouches[0].clientX;
         const dx = touchEndX - touchStartX;
         if (Math.abs(dx) > THRESHOLD) {
-          stopAutoPlay();
           goTo(dx < 0 ? current + 1 : current - 1);
-          setTimeout(startAutoPlay, 10000);
         }
       }, { passive: true });
+      
+      // Efeito de digitação no título
+      const title = document.querySelector('.slide--title h1');
+      if (title) {
+        const text = title.textContent;
+        title.textContent = '';
+        title.classList.add('typewriter');
+        setTimeout(() => {
+          title.textContent = text;
+          title.classList.remove('typewriter');
+          title.style.borderRight = 'none';
+        }, 4000);
+      }
+      
+      // Efeito de shake nos botões ao passar o mouse
+      const buttons = document.querySelectorAll('.controls button');
+      buttons.forEach(button => {
+        button.addEventListener('mouseenter', () => {
+          button.style.animation = 'shake 0.5s';
+          setTimeout(() => {
+            button.style.animation = '';
+          }, 500);
+        });
+      });
     });
   </script>
 </body>
