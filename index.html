@@ -563,18 +563,13 @@
 
     /* Layout do slide final */
     .final-slide-layout {
-        display: grid;
-        grid-template-columns: 3fr 2fr;
+        display: flex;
+        justify-content: center;
         align-items: center;
         width: 100%;
-        max-width: 1400px;
-        gap: 60px;
         height: 100%;
     }
-    .final-slide-layout .content-wrap { 
-      height: auto; 
-      max-height: 90vh; 
-    }
+    
     .thank-you-side {
         display: flex;
         justify-content: center;
@@ -602,6 +597,20 @@
       border-radius: 10px;
       z-index: -1;
       animation: pulse 3s infinite;
+    }
+
+    /* Slide 7 - Duração da Revolta */
+    .slide-duration {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+    
+    .duration-content {
+      max-width: 900px;
+      margin: 0 auto;
     }
 
     /* Controles */
@@ -759,7 +768,7 @@
           text-align: center; 
         }
         .thank-you-side { 
-          display: none; 
+          font-size: 4rem;
         }
     }
 
@@ -793,6 +802,9 @@
       .key-hint {
         display: none;
       }
+      .thank-you-side {
+        font-size: 3rem;
+      }
     }
 
     @media (max-width: 480px) {
@@ -815,6 +827,9 @@
       }
       .title-subtitle {
         font-size: 1rem;
+      }
+      .thank-you-side {
+        font-size: 2.5rem;
       }
     }
   </style>
@@ -1015,35 +1030,56 @@
           <ul><li></li><li></li><li></li><li></li><li></li><li></li><li></li></ul>
         </div>
         <div class="particles" id="particles5"></div>
-        <div class="final-slide-layout">
-            <div class="content-wrap">
-                <div class="text">
-                    <h2 class="animated"><i class="fas fa-question-circle"></i> POR QUE A REVOLTA?</h2>
-                    <p class="animated delay-1">A população do Rio de Janeiro se rebelou contra a vacinação porque a campanha realizada pelo governo federal foi conduzida de maneira autoritária, uma vez que a vacinação era obrigatória.</p>
-                    <p class="animated delay-2">Além disso, a população desconhecia os benefícios da vacinação e o governo brasileiro não promoveu nenhuma campanha para orientar a população sobre a importância de se vacinar.</p>
-                    
-                    <h3 class="animated delay-3" style="margin-top: 30px; color: var(--accent-light);">Líderes da Revolta da Vacina</h3>
-                    <div class="info-cards">
-                      <div class="info-card animated delay-3">
-                        <div class="card-icon"><i class="fas fa-user"></i></div>
-                        <h3>Oswaldo Cruz</h3>
-                        <p>Médico sanitarista, idealizador da campanha de vacinação</p>
-                      </div>
-                      
-                      <div class="info-card animated delay-3">
-                        <div class="card-icon"><i class="fas fa-user-tie"></i></div>
-                        <h3>Rodrigues Alves</h3>
-                        <p>Presidente do Brasil durante a revolta</p>
-                      </div>
-                      
-                      <div class="info-card animated delay-3">
-                        <div class="card-icon"><i class="fas fa-chess-knight"></i></div>
-                        <h3>Hermes da Fonseca</h3>
-                        <p>Líder militar que tentou um golpe durante a revolta</p>
-                      </div>
-                    </div>
-                </div>
+        <div class="content-wrap">
+          <div class="text">
+            <h2 class="animated"><i class="fas fa-question-circle"></i> POR QUE A REVOLTA?</h2>
+            <p class="animated delay-1">A população do Rio de Janeiro se rebelou contra a vacinação porque a campanha realizada pelo governo federal foi conduzida de maneira autoritária, uma vez que a vacinação era obrigatória.</p>
+            <p class="animated delay-2">Além disso, a população desconhecia os benefícios da vacinação e o governo brasileiro não promoveu nenhuma campanha para orientar a população sobre a importância de se vacinar.</p>
+            
+            <h3 class="animated delay-3" style="margin-top: 30px; color: var(--accent-light);">Líderes da Revolta da Vacina</h3>
+            <div class="info-cards">
+              <div class="info-card animated delay-3">
+                <div class="card-icon"><i class="fas fa-user"></i></div>
+                <h3>Oswaldo Cruz</h3>
+                <p>Médico sanitarista, idealizador da campanha de vacinação</p>
+              </div>
+              
+              <div class="info-card animated delay-3">
+                <div class="card-icon"><i class="fas fa-user-tie"></i></div>
+                <h3>Rodrigues Alves</h3>
+                <p>Presidente do Brasil durante a revolta</p>
+              </div>
+              
+              <div class="info-card animated delay-3">
+                <div class="card-icon"><i class="fas fa-chess-knight"></i></div>
+                <h3>Hermes da Fonseca</h3>
+                <p>Líder militar que tentou um golpe durante a revolta</p>
+              </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 7: DURAÇÃO DA REVOLTA -->
+      <section class="slide slide-duration" data-index="6">
+        <div class="background-animation">
+          <ul><li></li><li></li><li></li><li></li><li></li><li></li><li></li></ul>
+        </div>
+        <div class="particles" id="particles6"></div>
+        <div class="duration-content">
+          <h2 class="animated"><i class="fas fa-clock"></i> QUANTO TEMPO DUROU A REVOLTA DA VACINA?</h2>
+          <p class="animated delay-1">A Revolta da Vacina se iniciou no dia 10 de novembro e se encerrou em 16 de novembro, quando o governo estabeleceu estado de sítio. Entretanto, os historiadores apontam que houve pequenos focos de insatisfação popular até o dia 20 de novembro.</p>
+          <p class="animated delay-2">A Revolta da Vacina se encerrou por conta da repressão do governo ao levante. No dia 16 de novembro de 1904, o governo decretou estado de sítio, ampliando os meios de repressão aos manifestantes. A tentativa de golpe militar que se conduziu durante a Revolta da Vacina também fracassou. Houve ainda atos isolados de insatisfação no Rio de Janeiro até o dia 20 e centenas de pessoas foram presas durante esse revolta.</p>
+        </div>
+      </section>
+
+      <!-- SLIDE 8: AGRADECIMENTO FINAL -->
+      <section class="slide" data-index="7">
+        <div class="background-animation">
+          <ul><li></li><li></li><li></li><li></li><li></li><li></li><li></li></ul>
+        </div>
+        <div class="particles" id="particles7"></div>
+        <div class="final-slide-layout">
             <div class="thank-you-side animated">
                 Obrigado(a)!
             </div>
@@ -1089,8 +1125,6 @@
 
       let current = 0;
       let isAnimating = false;
-      let autoPlayInterval;
-      let isPaused = false;
 
       // Criar partículas
       function createParticles() {
